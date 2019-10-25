@@ -1,0 +1,38 @@
+<html>
+  <head></head>
+  <body>
+  	<header>
+  	  <%= render 'books/header', book: @book %>
+  	</header>
+  	<div class="container main-contents">
+  	   <div class="row">
+         <% if flash[:notice] %>
+  　　　　　<div class="flash">
+  　　　　　<%= flash[:notice] %>
+   　　　　 </div>
+   　　　　<% end %>
+  	   	 <%= render 'books/sidebar', book: @book %>
+  	   	 	<h2>Book detail</h2>
+  	   	 	<table>
+  	   	 	  <tbody>
+  	   	 	  	<tr>
+  	   	 	  	  <td><%= attachment_image_tag @book.user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
+                  <%= link_to @user.name, user_path(@user) %>
+                </td>
+                <td><%= link_to @book.title, book_path(@book) %></td>
+  	   	 	  	  <td><%= @book.body %></td>
+  	   	 	  	  <% if @book.user == current_user %>
+  	   	 	  	   <td><%= link_to 'Edit', edit_book_path, class:" btn btn-block btn-success btn-sm" %></td>
+  	   	 	  	   <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "Are you sure?", class:"btn btn-block btn btn-danger btn-sm" %></td>
+  	   	 	  	   <% end %>
+  	   	 	  	</tr>
+  	   	 	  </tbody>
+  	   	 	</table>
+  	   	 </div>
+  	   </div>
+  	</div>
+  	<footer>
+  	  <%= render 'books/footer' %>
+  	</footer>
+  </body>
+</html>

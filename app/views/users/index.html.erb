@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <header>
+      <%= render 'books/header',book: @book %>
+    </header>
+    <div class="container main-contents">
+      <div class="row">
+        <%= render 'books/sidebar',book: @book %>
+        <div class="col-xs-9">
+          <h2>Users</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>Name</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+             <% @users.each do |user| %>
+               <tr>
+                 <td><%= attachment_image_tag user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></td>
+                 <td class="user-name"><%= user.name %></td>
+                 <td class="user-show"><%= link_to "Show", user_path(user.id) %></td>
+               </tr>
+             <% end %>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <footer>
+     <%= render 'books/footer' %>
+    </footer>
+  </body>
+</html>
