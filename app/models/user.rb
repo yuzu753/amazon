@@ -11,7 +11,7 @@ class User < ApplicationRecord
     false
   end
 
-  validates :name, length: { minumum: 2 , maximum: 20 }
+  validates :name, length: { in: 2..20 }, presence: true
   validates :introduction, length: { maximum: 50 }
 
   has_many :books, dependent: :destroy
